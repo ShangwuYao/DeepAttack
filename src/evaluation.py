@@ -6,7 +6,6 @@ Created on Sat Jun  2 12:09:17 2018
 @author: mancx111
 """
 import numpy as np
-import time
 import json
 import argparse
 from keras.models import load_model
@@ -39,8 +38,8 @@ class Model_Evaluator(object):
     #Private functions that only be called by init
     def load_set(self,set_):
         my_dict={}
-        inputs=np.load(open('./image_data_v2/evaluate_input_'+set_+'.npy'))
-        labels=np.load(open('./image_data_v2/evaluate_label_'+set_+'.npy'))
+        inputs=np.load(open('./image_data_final/evaluate_input_'+set_+'.npy'))
+        labels=np.load(open('./image_data_final/evaluate_label_'+set_+'.npy'))
         for key,input_ in zip(labels,inputs):
             if key not in my_dict:
                 my_dict[key]=[]

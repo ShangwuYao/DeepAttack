@@ -1,6 +1,9 @@
 import boto3
 import json
 import time
+import urllib
+import os
+import zipfile
 from db import db, Submission
 from evaluation import Model_Evaluator
 
@@ -15,6 +18,11 @@ sqs = boto3.client('sqs')
 resp = sqs.get_queue_url(QueueName='advex')
 queue_url = resp['QueueUrl']
 
+urllib.urlretrieve("https://s3.amazonaws.com/advex/evaluation_data/image_data_final.zip", filename="image_data_final.zip")
+os.mkdir('./image_data_final',0755)
+zip_ref = zipfile.ZipFile('image_data_final.zip', 'r')
+zip_ref.extractall('./image_data_final')
+zip_ref.close()
 
 # SAMPLE_FEEDBACK = {
 # 	"robustness": "9",
